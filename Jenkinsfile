@@ -43,7 +43,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("hayrez/react-app")
+                    app = docker.build("haydar26/react-app")
                     app.inside {
                         sh 'echo $(curl localhost:1233)'
                     }
@@ -69,14 +69,14 @@ pipeline {
             }
             steps {
                     script {
-                        sh "docker pull hayrez/react-app:${env.BUILD_NUMBER}"
+                        sh "docker pull haydar26/react-app:${env.BUILD_NUMBER}"
                         try {
                             sh "docker stop react-app"
                             sh "docker rm react-app"
                         } catch (err) {
                             echo: 'caught error: $err'
                         }
-                        sh "docker run --restart always --name react-app -p 1233:80 -d hayrez/react-app:${env.BUILD_NUMBER}"
+                        sh "docker run --restart always --name react-app -p 1233:80 -d haydar26/react-app:${env.BUILD_NUMBER}"
                     }
             }
         }
@@ -115,7 +115,7 @@ pipeline {
                         } catch (err) {
                             echo: 'caught error: $err'
                         }
-                        sh "docker run --restart always --name react-app -p 1233:80 -d hayrez/react-app:${env.BUILD_NUMBER}"
+                        sh "docker run --restart always --name react-app -p 1233:80 -d haydar26/react-app:${env.BUILD_NUMBER}"
                     }
             }
         }
